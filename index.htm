@@ -1,0 +1,2091 @@
+
+<!-- saved from url=(0048)file://localhost/Users/itoukeiji/phpsample/.html -->
+<html class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>ZAPスキャンレポート</title>
+<style>
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #000;
+  font-size: 13px;
+}
+h1{
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px
+}
+h3{
+  font-size: 16px;
+}
+table{
+  border: none;
+  font-size: 13px;
+}
+td, th {
+  padding: 3px 4px;
+  word-break: break-word;
+}
+th{
+  font-weight: bold;
+}
+.results th{
+  text-align: left;
+}
+.spacer{
+  margin: 10px;
+}
+.spacer-lg{
+  margin: 40px;
+}
+.indent1{
+  padding: 4px 20px;
+}
+.indent2{
+  padding: 4px 40px;
+}
+.risk-high{
+  background-color: red;
+  color: #FFF;
+}
+.risk-medium{
+  background-color: orange;
+  color: #FFF;
+}
+.risk-low{
+  background-color: yellow;
+  color: #000;
+}
+.risk-info{
+  background-color: blue;
+  color: #FFF;
+}
+.summary th{
+  color: #FFF;
+}
+</style>
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./ZAPスキャンレポート_files/translateelement.css"></head>
+<body>
+<h1>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAABqbAAAamwHdbkbTAAAAB3RJTUUH4QsKDDQPKy6k8AAABxpJREFUWMO9l31sVWcdxz+/55xzbwt9QddJExClvIzNxTKJDZi22oJSbFZpmRb4g8sfhpEIwXQNTKh0NYgiMKIwo5AsdIxdQldGNBN5W2OTFRVcIZE1YwExcXOdc1DK+nLvOc/PP87tC9CWsj98bp6ck3Ofc57v7+37/T3wYGMucBR4F/gK/8exAugAdPXq1bpx40YFekZdHYuP+8PuGP+lAc8CmzIyMtLq6uqora3FcRwAzp49m/7Wv5O95tsNEfyEKvwH9B1V2hT7GnB+PABkhGePAvVA9dy5c6mvr2fp0qX3LOru7iYrK4toSQ1OXhGKohpOiyVQe0NVn9PGFb8iFofGFSMCMMPulwEXgbdXrlxZ3dHRQXt7+4ibA2RmZtLc3Ex/y/O4fg8RMUSMS8RxiRiPqPE+4xrnl07syA3Q+aN5wADlwO1oNPpqQ0NDfl9fH4cPH2bOnDn3dV9VVRWVlVV88vsteNF0XCO4xuA6Bs9xiBgPz/EmueKcIxavHyk/BPjnli1bpm3btu1TZ2hmxkTk8aeYMK8aay1WFVWwqgSqBDYgqQFJGxygccWa4e86IhJpbW39Zk5ODgUFBZ8KwOLFZeyr/wHZs0vw0jMxIqFpAuFt+EOYZ/OrAi41t96dhF8HThcWFnpnzpwhGo0+MIhnamvZs+8AM55uIhn4+Cnrkza8Wqv4NiBhfXwNCgxy3jauuKMKPOCPrpHSU2fOUlJS8sAg8qZP50bGY0xeuIFk4JO0SnIYiMAqSRuQDPyPgsbqh++ugqSsPXGC+WsoLS1lzZqnHxhA40svcfPvfyDNjRARwTOCJ+E0IjgiOGIwRnIkFl97NwBMX9dPvEfLSC+t5cCB/eTk5Ix78ylTplBcXMxDjy3EweIZISKSqoxwcyOCYwRXHETkuSEAsTjE4kVGTLrjpdP7p33U1NTQ2dk5bgCbN28Ow7BoA8YmcVOWR1KWuyKIgEEwYjBiJhN75Ushr15qRp747g9dcRZ4RtCuf3HhdBMlpQuZNm3auAAUFBRw+fJlWl/dy9SCaqwGIBIyJGBTUwemWqzy/mAIRPmaEUGsJeNbz+IVfJ+ioiI2bNgwbi80NTUxJWciV47/GM9Lwwg4CA6CSblbBqYYRPjqEACRR8JaVcRPkPHlJ5m66kX27W8kL2/6uMPR3t7Ox+++yQcXjmLEIEYQA8YIkuIHSYVDkBnDk3DSEDwAi5c5mUfWNtGVPovc3FwOHTp0XwDZ2dm0nTvH9Td+zSedVxDVkIQAEQ1BoIgKCpnmflqpQcAXyjYxo6KeVatWUVZWRiKRGPO1+fPns2vXLjoOr7uvFA8HcHMoQ8IHmkqOINnH1d81kJeXR0VFRcqKkUcQBLS0tHD79u2QXHq7UmkIqgKqoIKKAnQPNiSqXFG0QFVCXbcGK4pVIdnTBcDOnTupqqoa06q2tjZKS0uZ8LmZzKiox5nwWXzfx9qBfmGgCkDRa4MeUNE3repg2QSEiwMFk5nDF8vrWLZsGTNnzqS9vX1UAEVFRezYsYOeD68y8fNPEFifAL2rDAfBnJdhGv0NzzgtoYYbHGOICkSMIWKEqBE8x+X91v18cKGJyspKDh48SFZW1ohAlixZQstfLzM99iK9iQQJqySsxVfFDyz9Nolv/fw7gumsPtIbMZE0zxhcR3DFEDVCZIDTjeA5Drb3Jv84sYOu639j69atNDQ0jAgiN3cyPQ/NJXvhM/QnEwRW8dWSDAL6bbLTHlyee0cVWNWfBhpgVbEWfFUSqiSGqVoyCCCaxayndjKn+nm2736BzIyJHDt27B4AFy9eovvtU3R3nA5DkFJEXwNUtWHEptSsPtIXNW7UMy4mJSLeMA+4IrhCKC6A46XR+VYz772xj/z8fJqampg1a9bg906ePElZWRlZy3+DZuSGPUGQ/G/QuDznHjVMeaEyaS2+WqxVbMryxMDVKv0W+qzSr0pPoo/Mx8uZs/51rgdTmD17NrFYbJArFi9ezKZNm7h1dD1B4JO0PgG23KR6QxnlYLHXM846z7i4oX4P6vmA9Q6ENMsQZyiGxK1OPjr5M5Kd77B7925qamoAWLBgAX+59jFU7tmivy3fPvq5INXDSyx+3DXOd1xx8YzBiGBMKCIDwmKMDLEWEnoMUDdK37U2bp/6BQ9PSueV+BEWLVpEdnYW3be6f67wo7EOJoMgiMX3uuKs84zBEQcjghjBMCAmhF1niskGCMaiqFWs8ehrj+Off5nCwkK2b99OcXExwFTgvdEB3AmizIi85oqTNgDCSKrPFWV4DFRD/beqWLX4YUXdst0ffk+b168CVqZWpwN9YwO4Wzhi8c1GpM6ISTcYREJPMOSAQYZLHc1upY5meyjfBq/XAUwGbgL9Y4dgrBGLFwtSITAPkekCk1L73wS9qsoFxR6nceWfx/O5/wGLCSMJ+zJrfwAAAABJRU5ErkJggg=="><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+ZAPスキャンレポート
+</font></font></h1>
+<p>
+
+</p>
+<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アラートの概要</font></font></h3>
+<table width="45%" class="summary">
+<tbody><tr bgcolor="#666666">
+<th width="45%" height="24"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">リスクレベル</font></font></th><th width="55%" align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アラートの数</font></font></th>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="file://localhost/Users/itoukeiji/phpsample/.html#high"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">高い</font></font></a></td><td align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></td>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="file://localhost/Users/itoukeiji/phpsample/.html#medium"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">中</font></font></a></td><td align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></td>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="file://localhost/Users/itoukeiji/phpsample/.html#low"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">低</font></font></a></td><td align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></td>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="file://localhost/Users/itoukeiji/phpsample/.html#info"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">情報</font></font></a></td><td align="center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></td>
+</tr>
+</tbody></table>
+<div class="spacer-lg"></div>
+<h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アラートの詳細</font></font></h3>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-medium">
+<th width="20%"><a name="medium"></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ミディアム（ミディアム）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Frame-Optionsヘッダーが設定されていません</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Frame-Optionsヘッダーは、「ClickJacking」攻撃から保護するためにHTTP応答に含まれていません。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200831</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200710</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219_2</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200319</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/about_us</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/careers</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200911</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/contact</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200703</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200824</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/news</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/technology</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/privacy-policy</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201104</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201102</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201005</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/php/mailform.php</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">役職</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Xフレーム-オプション</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">28</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最新のWebブラウザーのほとんどは、X-Frame-OptionsHTTPヘッダーをサポートしています。</font><font style="vertical-align: inherit;">サイトから返されるすべてのWebページに設定されていることを確認します（ページがサーバー上のページによってのみフレーム化されると予想される場合（たとえば、FRAMESETの一部である場合）、SAMEORIGINを使用する必要があります。それ以外の場合は、ページを予期しない場合フレーム化するには、DENYを使用する必要があります。ALLOW-FROMを使用すると、特定のWebサイトでサポートされているWebブラウザーでWebページをフレーム化できます。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table>
+<div class="spacer"></div>
+<a name="low"></a><table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-low">
+<th width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">低（中）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クロスドメインJavaScriptソースファイルインクルード</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このページには、サードパーティドメインからの1つ以上のスクリプトファイルが含まれています。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201124</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201111</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201001</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20191025</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201104</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201005</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201102</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/technology</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/privacy-policy</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/use_case</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200824_2</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201009</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/news</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/careers</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200831</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200710</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/about_us</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219_2</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.googletagmanager.com/gtag/js?id=UA-173235794-1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;script async src = "https://www.googletagmanager.com/gtag/js?id=UA-173235794-1"&gt; &lt;/ script&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">27</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JavaScriptソースファイルが信頼できるソースからのみロードされ、アプリケーションのエンドユーザーがソースを制御できないようにします。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">829</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table>
+<div class="spacer"></div>
+<a name="low"></a><table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-low">
+<th width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">低（中）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Optionsヘッダーがありません</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Anti-MIME-SniffingヘッダーX-Content-Type-Optionsが「nosniff」に設定されていませんでした。</font><font style="vertical-align: inherit;">これにより、古いバージョンのInternet ExplorerとChromeが応答本文でMIMEスニッフィングを実行できるようになり、応答本文が宣言されたコンテンツタイプ以外のコンテンツタイプとして解釈および表示される可能性があります。</font><font style="vertical-align: inherit;">Firefoxの現在（2014年初頭）およびレガシーバージョンは、MIMEスニッフィングを実行するのではなく、宣言されたコンテンツタイプ（設定されている場合）を使用します。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/tween/tween.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/build/potree/potree.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/images/news/20201111.png</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/images/logoes/eagleye_logo1.png</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/images/home/dck_vehicle.jpg</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200319</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/examples/meieki.html</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/hum_icon.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/about_us</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/images/news/20201005.png</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/jquery/jquery-3.1.1.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/jstree/themes/mixed/style.css</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/extra/lines.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219_2</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/other/BinaryHeap.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/images/careers/special.gif</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/plasio/js/laslaz.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/manifest.json</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X-Content-Type-Options</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">113</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アプリケーション/ WebサーバーがContent-Typeヘッダーを適切に設定し、すべてのWebページでX-Content-Type-Optionsヘッダーを「nosniff」に設定していることを確認します。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可能であれば、エンドユーザーがMIMEスニッフィングをまったく実行しない、またはWebアプリケーション/ WebサーバーからMIMEスニッフィングを実行しないように指示できる標準に準拠した最新のWebブラウザーを使用するようにしてください。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">その他の情報</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">この問題はエラータイプのページ（401、403、500など）にも当てはまります。これらのページはインジェクションの問題の影響を受けることが多く、その場合、ブラウザが実際のコンテンツタイプからページをスニッフィングする懸念があります。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">「高」しきい値では、このスキャンルールはクライアントまたはサーバーのエラー応答を警告しません。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://owasp.org/www-community/Security_Headers</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table>
+<div class="spacer"></div>
+<a name="low"></a><table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-low">
+<th width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">低（中）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御とプラグマHTTPヘッダーセットが不完全またはまったくない</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cache-controlおよびpragmaHTTPヘッダーが適切に設定されていないか、ブラウザーとプロキシがコンテンツをキャッシュできるように欠落しています。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201124</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201102</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201005</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/php/mailform.php</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">役職</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/images/news/20191025.svg</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201104</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sitemap.xml</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/openlayers3/ol.css</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20191025</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20201009</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/news</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/css/style.css</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/build/potree/potree.css</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/manifest.json</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/css/bootstrap.min.css</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200824_2</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/about_us</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200219_2</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">パラメータ</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">キャッシュ制御</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">41</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">可能な場合は常に、cache-control HTTPヘッダーがno-cache、no-store、must-revalidateで設定されていることを確認してください。</font><font style="vertical-align: inherit;">プラグマHTTPヘッダーがキャッシュなしで設定されていること。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#web-content-caching</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">525</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table>
+<div class="spacer"></div>
+<a name="low"></a><table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-low">
+<th width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">低（中）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">アンチCSRFトークンの欠如</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTML送信フォームにAnti-CSRFトークンが見つかりませんでした。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">クロスサイトリクエストフォージェリは、被害者としてアクションを実行するために、被害者が知らないうちに意図せずにHTTPリクエストをターゲットの宛先に送信することを強制する攻撃です。</font><font style="vertical-align: inherit;">根本的な原因は、予測可能なURL /フォームアクションを繰り返し可能な方法で使用するアプリケーション機能です。</font><font style="vertical-align: inherit;">攻撃の性質は、CSRFがWebサイトがユーザーに対して持っている信頼を悪用することです。</font><font style="vertical-align: inherit;">対照的に、クロスサイトスクリプティング（XSS）は、ユーザーがWebサイトに対して持っている信頼を利用します。</font><font style="vertical-align: inherit;">XSSと同様に、CSRF攻撃は必ずしもクロスサイトではありませんが、クロスサイトである可能性があります。</font><font style="vertical-align: inherit;">クロスサイトリクエストフォージェリは、CSRF、XSRF、ワンクリックアタック、セッションライディング、混乱した代理人、シーサーフとも呼ばれます。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSRF攻撃は、次のようなさまざまな状況で効果的です。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">    *被害者はターゲットサイトでアクティブなセッションを持っています。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">    *被害者はターゲットサイトでHTTP認証を介して認証されます。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">    *被害者はターゲットサイトと同じローカルネットワーク上にいます。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CSRFは、主に被害者の特権を使用してターゲットサイトに対してアクションを実行するために使用されてきましたが、最近の手法では、応答にアクセスして情報を開示することが発見されています。</font><font style="vertical-align: inherit;">XSSはCSRFのプラットフォームとして使用でき、同一生成元ポリシーの範囲内で攻撃を実行できるため、ターゲットサイトがXSSに対して脆弱な場合、情報開示のリスクが劇的に高まります。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/contact</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">&lt;form action = "php / mailform.php" method = "post" id = "mail_form"&gt;</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">計画：アーキテクチャと設計</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">同性性をこれなし、フレームワークに回避傾斜精力されたた、フレームワークワークを使用してください。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">とOWASPCSRFGuardのアンチCSRFパノを使用します。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フェーズ：実装</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ほとんどのCSRF防御は攻撃者が制御するスクリプトを使用してバイパスできるため、アプリケーションにクロスサイトスクリプティングの問題がないことを確認してください。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フェーズ：アーキテクチャと設計</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フォームごとに一意のナンスを生成し、ナンスをフォームに配置し、フォームの受信時にナンスを確認します。</font><font style="vertical-align: inherit;">ナンスが予測できないことを確認してください（CWE-330）。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これはXSSを使用してバイパスできることに注意してください。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特に危険な操作を特定します。</font><font style="vertical-align: inherit;">ユーザーが危険な操作を実行する場合は、別の確認要求を送信して、ユーザーがその操作を実行することを意図していることを確認してください。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">これはXSSを使用してバイパスできることに注意してください。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ESAPIセッション管理コントロールを使用します。</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">このコントロールには、CSRFのコンポーネントが含まれています。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">状態の変更をトリガーするリクエストには、GETメソッドを使用しないでください。</font></font></p><p></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">フェーズ：実装</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTTPリファラーヘッダーをチェックして、リクエストが予期されたページから発信されたかどうかを確認します。</font><font style="vertical-align: inherit;">ユーザーまたはプロキシがプライバシー上の理由でリファラーの送信を無効にしている可能性があるため、これにより正当な機能が損なわれる可能性があります。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">その他の情報</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のHTMLフォームに既知のアンチCSRFトークン[anticsrf、CSRFToken、__ RequestVerificationToken、csrfmiddlewaretoken、authenticity_token、OWASP_CSRFTOKEN、anoncsrf、csrf_token、_csrf、_csrfSecret]が見つかりませんでした：[フォーム1： "company" "name_1" "mail_address" " [] "" kind [] "" kind [] "" form_submit_button "]。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://projects.webappsec.org/Cross-Site-Request-Forgery</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://cwe.mitre.org/data/definitions/352.html</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">352</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-info">
+<th width="20%"><a name="info"></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">情報（低）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タイムスタンプの開示-Unix</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タイムスタンプがアプリケーション/ウェブサーバーによって開示されました-Unix</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/proj4/proj4.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">003371507</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">11403055</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13789470</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13882323</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15915494</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16316671</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16643558</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12211667</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15792383</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/news</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20191025</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15132410</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/contact</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">173235794</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16768685</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/20200831</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20200831</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/news</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">20200319</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15177372</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16758465</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">11393254</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/openlayers3/ol.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">271733878</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">証拠</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">16774638</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">345</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">タイムスタンプデータが機密ではないこと、およびデータを集約して悪用可能なパターンを開示できないことを手動で確認します。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">その他の情報</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">003371507、評価：1970-02-09 09:31:47</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">http://projects.webappsec.org/w/page/13246936/Information%20Leakage</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">200</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tbody><tr height="24" class="risk-info">
+<th width="20%"><a name="info"></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">情報（低）</font></font></th><th width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">情報開示-疑わしいコメント</font></font></th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">説明</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">応答には、攻撃者を助ける可能性のある疑わしいコメントが含まれているようです。</font><font style="vertical-align: inherit;">注：スクリプトブロックまたはファイル内で行われた一致は、コメントだけでなくコンテンツ全体に対して行われます。</font></font></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/build/three.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/i18next/i18next.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/other/BinaryHeap.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/js/main.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/build/potree/potree.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/proj4/proj4.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/spectrum/spectrum.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/js/mailform-js.php</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/openlayers3/ol.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/jquery-ui/jquery-ui.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/sandbox/js/bootstrap.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/jquery/jquery-3.1.1.min.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/three.js/extra/lines.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/d3/d3.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">URL</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://www.map4.jp/Potree/libs/jstree/jstree.js</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">取得する</font></font></td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">インスタンス</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">15</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">解決</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">攻撃者に役立つ可能性のある情報を返すコメントをすべて削除し、攻撃者が参照する根本的な問題を修正します。</font></font></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">その他の情報</font></font></td><td width="80%"><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">b：1; e（f、g）}、getClearAlpha：function（）{return g}、setClearAlpha：function（a）{g = a; e（f、g）}、render：function（b、d、k 、p）{d = d.background; k = a.vr;（k = k.getSession &amp;&amp; k.getSession（））&amp;&amp; "additive" === k.environmentBlendMode &amp;&amp;（d = null）; null === d？（ e（f、g）、m = null、q = 0）：d &amp;&amp; d.isColor &amp;&amp;（e（d、1）、p =！0、m = null、q = 0）;（a.autoClear || p）&amp;&amp; a .clear（a.autoClearColor、a.autoClearDepth、a.autoClearStencil）; if（d &amp;&amp;（d.isCubeTexture || d.isWebGLRenderTargetCube））{void 0 === l &amp;&amp;（l = new ja（new Gd（1,1、 1）、new ma（{type： "BackgroundCubeMaterial"、uniforms：Yb（db.cube.uniforms）、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VertexShader：db.cube.vertexShader、fragmentShader：db.cube.fragmentShader、side：1、depthTest：！1、depthWrite：！1、fog：！1}））、l.geometry.removeAttribute（ "normal"）、l .geometry.removeAttribute（ "uv"）、l.onBeforeRender = function（a、b、c）{this.matrixWorld.copyPosition（c.matrixWorld）}、Object.defineProperty（l.material、 "map"、{get： function（）{return this.uniforms.tCube.value}}）、c.update（l））; p = d.isWebGLRenderTargetCube？d.texture：d; l.material.uniforms.tCube.value = p; l。 material.uniforms.tFlip.value = d.isWebGLRenderTargetCube？</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1：-1; if（m！== d || q！== p.version）l.material.needsUpdate =！0、m = d、q = p.version; b.unshift（l、l.geometry 、l.material、0,0、null）} else if（d &amp;&amp; d.isTexture）{void 0 === h &amp;&amp;（h = new ja（new $ b（2,2）、new ma（{type： "BackgroundMaterial" 、uniforms：Yb（db.background.uniforms）、vertexShader：db.background.vertexShader、fragmentShader：db.background.fragmentShader、side：0、depthTest：！1、depthWrite：！1、fog：！1}））、 h.geometry.removeAttribute（ "normal"）、Object.defineProperty（h.material、 "map"、{get：function（）{return this.uniforms.t2D.value}}）、c.update（h））;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pushShadow：function（a）{c.push（a）}}} function hk（）{function a（c）{c = c.target; c.removeEventListener（ "dispose"、a）; b.delete（c） } var b = new WeakMap; return {get：function（c、d）{if（！1 === b.has（c））{var e = new Ih; b.set（c、new WeakMap）; b .get（c）.set（d、e）; c.addEventListener（ "dispose"、a）} else！1 === b.get（c）.has（d）？（e = new Ih、b。 get（c）.set（d、e））：e = b.get（c）.get（d）; return e}、dispose：function（）{b = new WeakMap}}} function Db（a）{ M.call（this）; this.type = "MeshDepthMaterial"; this.depthPacking = 3200; this.morphTargets = this.skinning =！1; this.displacementMap =</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">p = r.clone（）; p.defines.HORIZONAL_PASS = 1; var v = new E; v.addAttribute（ "position"、new O（new Float32Array（[-1、-1、.5,3、-1 、.5、-1,3、.5]）、3））; var n = new ja（v、r）; for（v = 0; 4！== v; ++ v）{var z = 0 ！==（v＆1）、y = 0！==（v＆2）、V = new Db（{depthPacking：3201、morphTargets：z、skinning：y}）; m [v] = V; z = new Eb（{ morphTargets：z、skinning：y}）; q [v] = z} var P = this; this.enabled =！1; this.autoUpdate =！0; this.needsUpdate =！1; this.type = 1; this .render = function（d、m、q）{if（！1！== P.enabled &amp;&amp;（！1！== P.autoUpdate ||！1！== P.needsUpdate）&amp;&amp; 0！== d.length） {var u = a.getRenderTarget（）、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">b = d（e * a.width）、e = d（e * a.height）、void 0 === G &amp;&amp;（G = h（b、e））、c = c？h（b、e）： G、c.width = b、c.height = e、c.getContext（ "2d"）。drawImage（a、0,0、b、e）、console.warn（ "THREE.WebGLRenderer：テクスチャのサイズが変更されました（ "+ a.width +" x "+ a.height +"）to（ "+ b +" x "+ e +"）。 "）、c;" data "in a &amp;&amp; console.warn（" THREE.WebGLRenderer：Image in DataTexture is大きすぎます（ "+ a.width +" x "+ a.height +"）。 "）} return a} function m（a）{return L.isPowerOfTwo（a.width）&amp;&amp; L.isPowerOfTwo（a.height）} function q （a、b）{return a.generateMipmaps &amp;&amp; b &amp;&amp; 1003！== a.minFilter &amp;&amp; 1006！==</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bSELECT \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1; void 0 === A [a] &amp;&amp;（A [a] =！1）; A [a]！== e.buttons [f] .pressed &amp;&amp;（A [a] = e.buttons [f]。押されました、！0 === A [a]？c.dispatchEvent（{type： "selectstart"}）:( c.dispatchEvent（{type： "selectend"}）、c.dispatchEvent（{type： "select"} ）））} else c.visible =！1} return P}; this.getStandingMatrix = function（）{return u}; this.isPresenting = b; var B = new Xf; this.setAnimationLoop = function（a）{B .setAnimationLoop（a）; b（）&amp;&amp; B.start（）}; this.submitFrame = function（）{b（）&amp;&amp; h.submitFrame（）}; this.dispose = function（）{"undefined"！== typeof window &amp;&amp; window .removeEventListener（ "vrdisplaypresentchange"、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bSELECT \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">function（）{}; this.setReferenceSpaceType = function（a）{q = a}; this.getSession = function（）{return l}; this.setSession = function（a）{l = a; null！== l &amp;&amp; （l.addEventListener（ "select"、d）、l.addEventListener（ "selectstart"、d）、l.addEventListener（ "selectend"、d）、l.addEventListener（ "end"、e）、l.updateRenderState（{ baseLayer：new XRWebGLLayer（l、b）}）、l.requestReferenceSpace（q）.then（f）、r = l.inputSources、l.addEventListener（ "inputsourceschange"、function（）{r = l.inputSources; console。 log（r）; for（var a = 0; a &lt;k.length; a ++）k [a] .userData.inputSource =</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">c）、m = d.program、q =！0; if（void 0 === m）a.addEventListener（ "dispose"、f）; else if（m.code！== l）g（a）; else {if（d.lightsStateVersion！== h）d.lightsStateVersion = h; else if（void 0！== c.shaderID）return; q =！1} q &amp;&amp;（c.shaderID？（l = db [c。シェーダーID]、d.shader = {名前：a.type、ユニフォーム：Yb（l。ユニフォーム）、vertexShader：l.vertexShader、fragmentShader：l.fragmentShader}）：d.shader = {名前：a.type、ユニフォーム： a.uniforms、vertexShader：a.vertexShader、fragmentShader：a.fragmentShader}、a.onBeforeCompile（d.shader、F）、l = oa.getProgramCode（a、c）、m = oa.acquireProgram（a、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ra.get（ "WEBGL_color_buffer_float"））|| 1016 === q &amp;&amp;（Ea.isWebGL2？ra.get（ "EXT_color_buffer_float"）：ra.get（ "EXT_color_buffer_half_float"））？36053 === J.checkFramebufferStatus（36160） ？0 &lt;= b &amp;&amp; b &lt;= a.width-d &amp;&amp; 0 &lt;= c &amp;&amp; c &lt;= a.height-e &amp;&amp; J.readPixels（b、c、d、e、la.convert（m）、la.convert（q）、f）： console.error（ "THREE.WebGLRenderer.readRenderTargetPixels：renderTargetからのreadPixelsが失敗しました。フレームバッファーが完了していません。"）：console.error（ "THREE.WebGLRenderer.readRenderTargetPixels：renderTargetがUnsignedByteTypeまたは実装定義タイプにありません。"）}最後に{g &amp;&amp;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">b）{void 0 === a &amp;&amp;（a = []）; void 0 === b &amp;&amp;（b = 0）; a [b] = this.x; a [b + 1] = this.y; return a }、fromBufferAttribute：function（a、b、c）{void 0！== c &amp;&amp; console.warn（ "THREE.Vector2：オフセットが.fromBufferAttribute（）から削除されました。"）; this.x = a.getX（b） ; this.y = a.getY（b）; return this}、rotateAround：function（a、b）{var c = Math.cos（b）; b = Math.sin（b）; var d = this.xa .x、e = this.ya.y; this.x = d * ce * b + ax; this.y = d * b + e * c + ay; return this}}）; Object.assign（ua、{ slerp：function（a、b、c、d）{return c.copy（a）.slerp（b、d）}、slerpFlat：function（a、b、c、d、e、f、g）{var h ==</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">c; this.z = a; return this}、setFromMatrixColumn：function（a、b）{return this.fromArray（a.elements、4 * b）}、equals：function（a）{return ax === this。 x &amp;&amp; a.y === this.y &amp;&amp; a.z === this.z}、fromArray：function（a、b）{void 0 === b &amp;&amp;（b = 0）; this.x = a [b]; this .y = a [b + 1]; this.z = a [b + 2]; return this}、toArray：function（a、b）{void 0 === a &amp;&amp;（a = []）; void 0 = == b &amp;&amp;（b = 0）; a [b] = this.x; a [b + 1] = this.y; a [b + 2] = this.z; return a}、fromBufferAttribute：function（a、 b、c）{void 0！== c &amp;&amp; console.warn（ "THREE.Vector3：オフセットが.fromBufferAttribute（）から削除されました。"）;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">this.w; return a}、fromBufferAttribute：function（a、b、c）{void 0！== c &amp;&amp; console.warn（ "THREE.Vector4：オフセットが.fromBufferAttribute（）から削除されました。"）; this.x = a.getX（b）; this.y = a.getY（b）; this.z = a.getZ（b）; this.w = a.getW（b）; return this}}）; la.prototype = Object.assign（Object.create（Ba.prototype）、{constructor：la、isWebGLRenderTarget：！0、setSize：function（a、b）{if（this.width！== a || this.height！== b ）this.width = a、this.height = b、this.texture.image.width = a、this.texture.image.height = b、this.dispose（）; this.viewport.set（0,0、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bXXX \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">float shadowRadius、vec4 shadowCoord、float shadowCameraNear、float shadowCameraFar）{\ n \ t \ tvec2 texelSize = vec2（1.0）/（shadowMapSize * vec2（4.0、2.0））; \ n \ t \ tvec3 lightToPosition = shadowCoord.xyz; \ n \ t \ tfloat dp =（length（lightToPosition）-shadowCameraNear）/（shadowCameraFar-shadowCameraNear）; \ t \ tdp + = shadowBias; \ n \ t \ tvec3 bd3D = normalize（lightToPosition）; \ n \ t \ t＃定義されている場合（SHADOWMAP_TYPE_PCF）|| </font><font style="vertical-align: inherit;">定義済み（SHADOWMAP_TYPE_PCF_SOFT）|| </font><font style="vertical-align: inherit;">defined（SHADOWMAP_TYPE_VSM）\ n \ t \ t \ tvec2 offset = vec2（-1、1）* shadowRadius * texelSize.y; \ n \ t \ t \ treturn（\ n \ t \ t \ t \ ttexture2DCompare（shadowMap、 cubeToUV（bd3D + offset.xyy、texelSize.y）、dp）+ \ n \ t \ t \ t \ ttexture2DCompare（shadowMap、cubeToUV（bd3D + offset.yyy、texelSize.y）、dp）+ \ n \ t \ t \ t \ ttexture2DCompare（shadowMap、cubeToUV（bd3D + offset.xyx、texelSize.y）、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pointShadowMap：{value：[]}、pointShadowMatrix：{value：[]}、hemisphereLights：{value：[]、properties：{direction：{}、skyColor：{}、groundColor：{}}}、rectAreaLights：{value ：[]、properties：{color：{}、position：{}、width：{}、height：{}}}}、points：{diffuse：{value：new H（15658734）}、opacity：{value： 1}、size：{value：1}、scale：{value：1}、map：{value：null}、uvTransform：{value：new Y}}、sprite：{diffuse：{value：new H（15658734） }、opacity：{value：1}、center：{value：new w（.5、.5）}、rotation：{value：0}、map：{value：null}、uvTransform：{value：new Y} }}、db =</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">FragmentShader：N.equirect_frag}、distanceRGBA：{uniforms：Da（[I.common、I.displacementmap、{referencePosition：{value：new n}、nearDistance：{value：1}、farDistance：{value：1E3}}] ）、vertexShader：N.distanceRGBA_vert、fragmentShader：N.distanceRGBA_frag}、shadow：{uniforms：Da（[I.lights、I.fog、{color：{value：new H（0）}、opacity：{value：1 }}]）、vertexShader：N.shadow_vert、fragmentShader：N.shadow_frag}}; db.physical = {uniforms：Da（[db.standard.uniforms、{transparency：{value：0}、clearcoat：{value：0 }、clearcoatRoughness：{value：0}、sheen：{value：new H（0）}、</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">b &amp;&amp; c.push（f）} return c}; var Xj = 0、$ f = / ^ [\ t] *＃include + &lt;（[\ w \ d./]+)&gt;/gm,Gh=/#pragma unroll_loop [\ s] +？for \（int i =（\ d +）; i &lt;（\ d +）; i \ + \ + \）\ {（[\ s \ S] +？）（？= \}） \} / g、gk = 0; Db.prototype = Object.create（M.prototype）; Db.prototype.constructor = Db; Db.prototype.isMeshDepthMaterial =！0; Db.prototype.copy = function（a）{ M.prototype.copy.call（this、a）; this.depthPacking = a.depthPacking; this.skinning = a.skinning; this.morphTargets = a.morphTargets; this.map = a.map; this.alphaMap = a .alphaMap; this.displacementMap = a.displacementMap;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">RawShaderMaterial：Zc、ShaderMaterial：ma、PointsMaterial：Qa、MeshPhysicalMaterial：kc、MeshStandardMaterial：fb、MeshPhongMaterial：Ra、MeshToonMaterial：lc、MeshNormalMaterial：mc、MeshLambertMaterial：nc、MeshDepthMaterial：Db、MeshDistanceMaterial：Eb、MeshBasicMaterial：Ga oc、LineDashedMaterial：pc、LineBasicMaterial：Q、Material：M}）、pa = {arraySlice：function（a、b、c）{return pa.isTypedArray（a）？new a.constructor（a.subarray（b、void 0！== c？c：a.length））：a.slice（b、c）}、convertArray：function（a、b、c）{return！a ||！c &amp;&amp;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">u？（u =！1、h [p] .push（l））：t =！0）; u &amp;&amp; h [e] .push（l）} 0 &lt;a.length &amp;&amp;（t ||（n = h）） } t = 0; for（e = k.length; t &lt;e; t ++）for（h = k [t] .s、b.push（h）、a = n [t]、f = 0、g = a.length; f &lt;g; f ++）h.holes.push（a [f] .h）; return b}}）; Object.assign（wg.prototype、{isFont：！0、generateShapes：function（a、 b）{void 0 === b &amp;&amp;（b = 100）; var c = []、d = b; b = this.data; var e = Array.from？Array.from（a）：String（a）。 split（ ""）; d / = b.resolution; var f =（b.boundingBox.yMax-b.boundingBox.yMin + b.underlineThickness）* d; a = []; for（var g = 0、h = 0、l = 0; l &lt;e.length; l ++）{var k = e [l]; if（ "\ n" === k）g = 0、h- = f;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bFROM \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">b、c）}、sanitizeNodeName：function（a）{return a.replace（/ \ s / g、 "_"）。replace（Jk、 ""）}、parseTrackName：function（a）{var b = Pk。 exec（a）; if（！b）throw Error（ "PropertyBinding：Cannot parse trackName：" + a）; b = {nodeName：b [2]、objectName：b [3]、objectIndex：b [4]、propertyName ：b [5]、propertyIndex：b [6]}; var c = b.nodeName &amp;&amp; b.nodeName.lastIndexOf（ "。"）; if（void 0！== c &amp;&amp;-1！== c）{var d = b .nodeName.substring（c + 1）;-1！== Qk.indexOf（d）&amp;&amp;（b.nodeName = b.nodeName.substring（0、c）、b.objectName = d）} if（null == = b.propertyName || 0 === b.propertyName.length）throw Error（ "PropertyBinding：can not parse propertyName from trackName：" +</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">104; k.Mesh = ja; k.MeshBasicMaterial = Ga; k.MeshDepthMaterial = Db; k.MeshDistanceMaterial = Eb; k.MeshFaceMaterial = function（a）{console.warn（ "THREE.MeshFaceMaterialが削除されました。配列を使用してください代わりに。 "）; return a}; k.MeshLambertMaterial = nc; k.MeshMatcapMaterial = oc; k.MeshNormalMaterial = mc; k.MeshPhongMaterial = Ra; k.MeshPhysicalMaterial = kc; k.MeshStandardMaterial = fb; k.MeshToonMaterial = lc ; k.MinEquation = 103; k.MirroredRepeatWrapping = 1002; k.MixOperation = 1; k.MultiMaterial = function（a）{void 0 === a &amp;&amp;（a = []）; console.warn（ "THREE.MultiMaterial has削除されました。代わりにアレイを使用してください。 "）;</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">次のコメント/スニペットは、パターンを介して識別されました：\ bDB \ b</font></font></p><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7681; k.ReverseSubtractEquation = 102; k.RingBufferGeometry = Vc; k.RingGeometry = fe; k.Scene = wd; k.SceneUtils = {createMultiMaterialObject：function（）{console.error（ "THREE.SceneUtilsは/に移動されましたexamples / js / utils / SceneUtils.js "）}、detach：function（）{console.error（" THREE.SceneUtilsは/examples/js/utils/SceneUtils.js "）}、attach：function（）に移動されました{console.error（ "THREE.SceneUtilsは/examples/js/utils/SceneUtils.jsに移動されました"）}}; k.ShaderChunk = N; k.ShaderLib = db; k.ShaderMaterial = ma; k.ShadowMaterial =</font></font></p><p></p></td>
+</tr>
+<tr valign="top">
+<td colspan="2"></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">参照</font></font></td><td width="80%"><p></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">CWE ID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">200</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">WASCID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">13</font></font></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">ソースID</font></font></td><td width="80%"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+</tr>
+
+</tbody></table><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./ZAPスキャンレポート_files/translate_24dp.png" width="20" height="20" alt="Google 翻訳"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">原文</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">翻訳を改善する</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+
+
+<div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>
